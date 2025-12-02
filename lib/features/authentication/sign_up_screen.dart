@@ -4,14 +4,21 @@ import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
+import 'package:tiktok_clone/features/authentication/widgets/email_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
-  void onLoginTap(BuildContext context) {
+  void _onLoginTap(BuildContext context) {
     Navigator.of(
       context,
     ).push(MaterialPageRoute(builder: (context) => LoginScreen()));
+  }
+
+  void _onEmailTap(BuildContext context) {
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => EmailScreen()));
   }
 
   @override
@@ -37,9 +44,12 @@ class SignUpScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Gaps.v40,
-              AuthButton(
-                icon: FaIcon(FontAwesomeIcons.user),
-                text: "Use email & password",
+              GestureDetector(
+                onTap: () => _onEmailTap(context),
+                child: AuthButton(
+                  icon: FaIcon(FontAwesomeIcons.user),
+                  text: "Use email & password",
+                ),
               ),
               Gaps.v16,
               AuthButton(
@@ -51,7 +61,7 @@ class SignUpScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.grey.shade100,
+        color: Colors.grey.shade50,
         elevation: 2, // 잘 먹는 느낌이 안듦 확인 필요
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -63,7 +73,7 @@ class SignUpScreen extends StatelessWidget {
               Text('Already have an account?'),
               Gaps.h5,
               GestureDetector(
-                onTap: () => onLoginTap(context),
+                onTap: () => _onLoginTap(context),
                 child: Text(
                   'Log in',
                   style: TextStyle(
