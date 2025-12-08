@@ -9,11 +9,13 @@ class NavTab extends StatelessWidget {
     required this.isSelected,
     required this.icon,
     required this.onTap,
+    required this.selectedIcon,
   });
 
   final String text;
   final bool isSelected;
   final IconData icon;
+  final IconData selectedIcon;
   final Function onTap;
 
   @override
@@ -22,7 +24,6 @@ class NavTab extends StatelessWidget {
       child: GestureDetector(
         onTap: () => onTap(),
         child: Container(
-          // color: Colors.red, // 공간을 확인함
           color: Colors.black,
           child: AnimatedOpacity(
             duration: Duration(milliseconds: 300),
@@ -30,7 +31,7 @@ class NavTab extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                FaIcon(icon, color: Colors.white),
+                FaIcon(isSelected ? selectedIcon : icon, color: Colors.white),
                 Gaps.v5,
                 Text(text, style: TextStyle(color: Colors.white)),
               ],
