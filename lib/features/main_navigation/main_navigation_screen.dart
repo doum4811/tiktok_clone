@@ -16,22 +16,6 @@ class MainNavigationScreen extends StatefulWidget {
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 0;
 
-  // final screens = [
-  //   Center(child: Text('Home')),
-  //   Center(child: Text('Discover')),
-  //   // Center(child: Text('Home')),
-  //   Container(),
-  //   Center(child: Text('Indox')),
-  //   Center(child: Text('Profile')),
-  // ];
-  final screens = [
-    StfScreen(key: GlobalKey()),
-    StfScreen(key: GlobalKey()),
-    // Center(child: Text('Home')),
-    Container(key: GlobalKey()),
-    StfScreen(key: GlobalKey()),
-    StfScreen(key: GlobalKey()),
-  ];
   void _onTap(int index) {
     setState(() {
       _selectedIndex = index;
@@ -40,8 +24,19 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('im bulit!');
     return Scaffold(
-      body: screens.elementAt(_selectedIndex),
+      body: //screens.elementAt(_selectedIndex),
+      Stack(
+        children: [
+          Offstage(offstage: _selectedIndex != 0, child: StfScreen()),
+          Offstage(offstage: _selectedIndex != 1, child: StfScreen()),
+
+          Offstage(offstage: _selectedIndex != 3, child: StfScreen()),
+          Offstage(offstage: _selectedIndex != 4, child: StfScreen()),
+        ],
+      ),
+
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
         child: Padding(
