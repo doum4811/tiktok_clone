@@ -29,43 +29,21 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-
-        currentIndex: _selectedIndex,
-        onTap: _onTap,
-        // selectedItemColor: Theme.of(context).primaryColor,
-        items: [
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.house),
-            label: "Home",
-            tooltip: "What are you?",
-            backgroundColor: Colors.amber,
+      bottomNavigationBar: NavigationBar(
+        labelBehavior:
+            NavigationDestinationLabelBehavior.onlyShowSelected, //alwaysShow,
+        selectedIndex: _selectedIndex,
+        onDestinationSelected: _onTap,
+        destinations: [
+          //Text('hi'), Text('hi')
+          NavigationDestination(
+            icon: FaIcon(FontAwesomeIcons.house, color: Colors.white),
+            label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-            label: "Search",
-            tooltip: "What are you?",
-            backgroundColor: Colors.blue,
+          NavigationDestination(
+            icon: FaIcon(FontAwesomeIcons.magnifyingGlass, color: Colors.amber),
+            label: 'Search',
           ),
-          // BottomNavigationBarItem(
-          //   icon: FaIcon(FontAwesomeIcons.house),
-          //   label: "Home",
-          //   tooltip: "What are you?",
-          //   backgroundColor: Colors.pink,
-          // ),
-          // BottomNavigationBarItem(
-          //   icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-          //   label: "Search",
-          //   tooltip: "What are you?",
-          //   backgroundColor: Colors.yellow,
-          // ),
-          // BottomNavigationBarItem(
-          //   icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-          //   label: "Search",
-          //   tooltip: "What are you?",
-          //   backgroundColor: Colors.teal,
-          // ),
         ],
       ),
     );
