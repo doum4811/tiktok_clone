@@ -35,8 +35,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('im bulit!');
     return Scaffold(
+      backgroundColor: _selectedIndex == 0 ? Colors.black : Colors.white,
       body: //screens.elementAt(_selectedIndex),
       Stack(
         children: [
