@@ -99,6 +99,7 @@ class _VideoPostState extends State<VideoPost>
     }
     await showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       barrierColor: Colors.transparent, //Colors.red,
       //
       shape: RoundedRectangleBorder(
