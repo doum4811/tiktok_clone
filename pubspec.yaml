@@ -68,6 +68,7 @@ flutter:
   assets:
     # - assets/vedios/video.mp4
     - assets/videos/IMG_3987.MOV
+    - assets/images/IMG_3363.PNG
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
