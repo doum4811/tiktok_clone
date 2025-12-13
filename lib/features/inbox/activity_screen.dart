@@ -23,6 +23,7 @@ class _ActivityScreenState extends State<ActivityScreen>
     {"title": "From TikTok", "icon": FontAwesomeIcons.tiktok},
   ];
 
+  bool _showBarrier = false;
   late final AnimationController _animationController = AnimationController(
     vsync: this,
     duration: Duration(milliseconds: 200),
@@ -38,6 +39,11 @@ class _ActivityScreenState extends State<ActivityScreen>
     end: Offset.zero,
   ).animate(_animationController);
 
+  late final Animation<Color?> _barrierAnimation = ColorTween(
+    begin: Colors.transparent,
+    end: Colors.black38,
+  ).animate(_animationController);
+
   @override
   void initState() {
     super.initState();
@@ -49,12 +55,17 @@ class _ActivityScreenState extends State<ActivityScreen>
     setState(() {});
   }
 
-  void _onTitleTap() {
+  void _toggleAnimations() async {
     if (_animationController.isCompleted) {
-      _animationController.reverse();
+      await _animationController
+          .reverse(); // 애니메이션 완료 된 후에 barrier가 사라지도록 await을 씀
     } else {
-      _animationController.forward();
+      _animationController.forward(); // await을 하면 패널이 내려온 후에 베리어 색이 나옴
     }
+
+    setState(() {
+      _showBarrier = !_showBarrier;
+    });
   }
 
   @override
@@ -63,7 +74,7 @@ class _ActivityScreenState extends State<ActivityScreen>
     return Scaffold(
       appBar: AppBar(
         title: GestureDetector(
-          onTap: _onTitleTap,
+          onTap: _toggleAnimations,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -173,6 +184,13 @@ class _ActivityScreenState extends State<ActivityScreen>
                 ),
             ],
           ),
+          if (_showBarrier)
+            AnimatedModalBarrier(
+              color: _barrierAnimation,
+              dismissible: true,
+              onDismiss: _toggleAnimations,
+            ),
+
           SlideTransition(
             position: _panelAnimation,
             child: Container(
