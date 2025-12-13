@@ -10,19 +10,59 @@ class ActivityScreen extends StatefulWidget {
   State<ActivityScreen> createState() => _ActivityScreenState();
 }
 
-class _ActivityScreenState extends State<ActivityScreen> {
+class _ActivityScreenState extends State<ActivityScreen>
+    with SingleTickerProviderStateMixin {
   final List<String> _notifications = List.generate(20, (index) => "${index}h");
+
+  late final AnimationController _animationController = AnimationController(
+    vsync: this,
+    duration: Duration(milliseconds: 200),
+  );
+
+  late final Animation<double> _animation = Tween(
+    begin: 0.0,
+    end: 0.5,
+  ).animate(_animationController);
+
+  @override
+  void initState() {
+    super.initState();
+    // _animationController = AnimationController(vsync: this); 필요없음
+  }
 
   void _onDismissed(String notification) {
     _notifications.remove(notification);
     setState(() {});
   }
 
+  void _onTitleTap() {
+    if (_animationController.isCompleted) {
+      _animationController.reverse();
+    } else {
+      _animationController.forward();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(_notifications);
+    // print(_notifications);
     return Scaffold(
-      appBar: AppBar(title: Text("All activity")),
+      appBar: AppBar(
+        title: GestureDetector(
+          onTap: _onTitleTap,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("All activity"),
+              Gaps.h2,
+              RotationTransition(
+                turns: _animation,
+                child: FaIcon(FontAwesomeIcons.chevronDown, size: Sizes.size14),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: ListView(
         children: [
           Gaps.v14,
@@ -41,7 +81,6 @@ class _ActivityScreenState extends State<ActivityScreen> {
           for (var notification in _notifications)
             Dismissible(
               key: Key(notification),
-              // onDismissed: (direction) => print(direction),
               onDismissed: (direction) => _onDismissed(notification),
 
               background: Container(
