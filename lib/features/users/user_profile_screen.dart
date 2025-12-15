@@ -14,9 +14,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          floating: true,
           stretch: true,
           pinned: true,
+          snap: true,
+          floating: true,
           backgroundColor: Colors.teal,
           // title: Text("Hello!"),
           collapsedHeight: 80,
@@ -33,6 +34,19 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ),
             title: Text("Hello!"),
           ),
+        ),
+        SliverFixedExtentList(
+          delegate: SliverChildBuilderDelegate(
+            childCount: 50,
+            (context, index) => Container(
+              color: Colors.amber[100 * (index % 9)],
+              child: Align(
+                alignment: Alignment.center,
+                child: Text("Item $index"),
+              ),
+            ),
+          ),
+          itemExtent: 100,
         ),
       ],
     );
