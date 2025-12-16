@@ -84,7 +84,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: Text("Log out (iOS)"),
             textColor: Colors.red,
             onTap: () {
-              showCupertinoDialog(
+              // showCupertinoDialog(
+              showCupertinoModalPopup(
                 context: context,
                 builder: (context) => CupertinoAlertDialog(
                   title: Text("Are you sure?"),
@@ -124,6 +125,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
                       child: Text("Yes"),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+
+          ListTile(
+            title: Text("Log out (iOS / Bottom)"),
+            textColor: Colors.red,
+            onTap: () {
+              showCupertinoModalPopup(
+                context: context,
+                builder: (context) => CupertinoActionSheet(
+                  title: Text("Are you sure?"),
+                  message: Text("Please doooooooont gooooo"),
+                  actions: [
+                    CupertinoActionSheetAction(
+                      isDefaultAction: true,
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text("Not log out"),
+                    ),
+                    CupertinoActionSheetAction(
+                      isDefaultAction: true,
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text("Yes plz."),
                     ),
                   ],
                 ),
