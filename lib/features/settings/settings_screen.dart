@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -24,26 +25,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(title: Text('Settings')),
       body: ListView(
         children: [
-          // CupertinoSwitch(
-          //   value: _notifications,
-          //   onChanged: _onNotificationChanged,
-          // ),
-          // Switch.adaptive(
-          //   // 시뮬레이터에 따라 스타일 변경됨
-          //   value: _notifications,
-          //   onChanged: _onNotificationChanged,
-          // ),
-
-          // Switch(value: _notifications, onChanged: _onNotificationChanged),
-          // SwitchListTile(
           SwitchListTile.adaptive(
             value: _notifications,
             onChanged: _onNotificationChanged,
             title: Text("Enable notifications"),
             subtitle: Text("Enable notifications"),
           ),
-
-          // Checkbox(value: _notifications, onChanged: _onNotificationChanged),
           CheckboxListTile(
             activeColor: Colors.black,
             value: _notifications,
@@ -91,8 +78,63 @@ class _SettingsScreenState extends State<SettingsScreen> {
               print(booking);
             },
             title: Text("What is your birthday?"),
+            subtitle: Text("I need to know!"),
           ),
-          AboutListTile(),
+          ListTile(
+            title: Text("Log out (iOS)"),
+            textColor: Colors.red,
+            onTap: () {
+              showCupertinoDialog(
+                context: context,
+                builder: (context) => CupertinoAlertDialog(
+                  title: Text("Are you sure?"),
+                  content: Text("Plx dont go"),
+                  actions: [
+                    CupertinoDialogAction(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text("No"),
+                    ),
+                    CupertinoDialogAction(
+                      isDefaultAction: true,
+                      onPressed: () => Navigator.of(context).pop(),
+                      // 글씨 색이 붉지 않아서 넣어봄
+                      // textStyle: TextStyle(color: Colors.red),
+                      child: Text("Yes"),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: Text("Log out (Android)"),
+            textColor: Colors.red,
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  icon: FaIcon(FontAwesomeIcons.skull),
+                  title: Text("Are you sure?"),
+                  content: Text("Plx dont go"),
+                  actions: [
+                    IconButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      icon: FaIcon(FontAwesomeIcons.car),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text("Yes"),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+
+          AboutListTile(
+            applicationVersion: "1.0",
+            applicationLegalese: "Don't copy me.",
+          ),
         ],
       ),
     );
