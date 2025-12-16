@@ -15,7 +15,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          pinned: true,
+          // pinned: true,
           stretch: true,
           backgroundColor: Colors.teal,
           // title: Text("Hello!"),
@@ -34,6 +34,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             title: Text("Hello!"),
           ),
         ),
+        SliverToBoxAdapter(
+          child: CircleAvatar(backgroundColor: Colors.red, radius: 20),
+        ),
         SliverFixedExtentList(
           delegate: SliverChildBuilderDelegate(
             childCount: 50,
@@ -46,6 +49,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ),
           ),
           itemExtent: 100,
+        ),
+        SliverPersistentHeader(
+          delegate: CustomDelegate(),
+          pinned: true,
+          floating: true,
         ),
         SliverGrid(
           delegate: SliverChildBuilderDelegate(
@@ -67,5 +75,43 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         ),
       ],
     );
+  }
+}
+
+class CustomDelegate extends SliverPersistentHeaderDelegate {
+  @override
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
+    return Container(
+      color: Colors.indigo,
+      child: FractionallySizedBox(
+        heightFactor: 1,
+        child: Center(
+          child: Text('Title!!!!!', style: TextStyle(color: Colors.white)),
+        ),
+      ),
+    );
+  }
+
+  // // 최대 높이
+  // @override
+  // double get maxExtent => 100;
+
+  // // 최저 높이
+  // @override
+  // double get minExtent => 100;
+
+  @override
+  double get maxExtent => 150;
+
+  @override
+  double get minExtent => 80;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
   }
 }
