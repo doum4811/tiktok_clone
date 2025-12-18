@@ -25,9 +25,12 @@ class TikTokApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'TikTok Clone',
+      themeMode: ThemeMode.system, //  light,
       theme: ThemeData(
         useMaterial3: false,
+        brightness: Brightness.light,
         scaffoldBackgroundColor: Colors.white,
+        bottomAppBarTheme: BottomAppBarThemeData(color: Colors.grey.shade50),
         primaryColor: Color(0xFFE9435A),
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Color(0xFFE9435A),
@@ -46,67 +49,17 @@ class TikTokApp extends StatelessWidget {
           ),
         ),
       ),
-      // home: SignUpScreen(),
+      darkTheme: ThemeData(
+        useMaterial3: false,
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        bottomAppBarTheme: BottomAppBarThemeData(color: Colors.grey.shade800),
+
+        primaryColor: Color(0xFFE9435A),
+      ),
+      home: SignUpScreen(),
       // home: ActivityScreen(),
-      home: MainNavigationScreen(),
-      // home: LayoutBuilderCodeLab(),
+      // home: MainNavigationScreen(),
     );
   }
 }
-
-// // class LayoutBuilderCodeLab extends StatelessWidget {
-// //   const LayoutBuilderCodeLab({super.key});
-
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     final size = MediaQuery.of(context).size;
-
-// //     return Scaffold(
-// //       body: LayoutBuilder(
-// //         builder: (context, constraints) => Container(
-// //           // width: size.width,
-// //           // height: size.height,
-// //           width: constraints.maxWidth,
-// //           height: constraints.maxHeight,
-// //           color: Colors.teal,
-// //           child: Center(
-// //             child: Text(
-// //               "${size.width} / ${constraints.maxWidth}", // 같음
-// //               style: TextStyle(color: Colors.white, fontSize: 98),
-// //             ),
-// //           ),
-// //         ),
-// //       ),
-// //     );
-// //   }
-// // }
-
-// class LayoutBuilderCodeLab extends StatelessWidget {
-//   const LayoutBuilderCodeLab({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final size = MediaQuery.of(context).size;
-
-//     return Scaffold(
-//       body: SizedBox(
-//         width: size.width / 2, // 화면의 너비의 반만큼 차지
-//         child: LayoutBuilder(
-//           builder: (context, constraints) => Container(
-//             // width: size.width,
-//             // height: size.height,
-//             width: constraints.maxWidth,
-//             height: constraints.maxHeight,
-//             color: Colors.teal,
-//             child: Center(
-//               child: Text(
-//                 "${size.width} / ${constraints.maxWidth}",
-//                 style: TextStyle(color: Colors.white, fontSize: 98),
-//               ),
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
