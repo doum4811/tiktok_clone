@@ -49,6 +49,64 @@ class TikTokApp extends StatelessWidget {
       // home: SignUpScreen(),
       // home: ActivityScreen(),
       home: MainNavigationScreen(),
+      // home: LayoutBuilderCodeLab(),
     );
   }
 }
+
+// // class LayoutBuilderCodeLab extends StatelessWidget {
+// //   const LayoutBuilderCodeLab({super.key});
+
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     final size = MediaQuery.of(context).size;
+
+// //     return Scaffold(
+// //       body: LayoutBuilder(
+// //         builder: (context, constraints) => Container(
+// //           // width: size.width,
+// //           // height: size.height,
+// //           width: constraints.maxWidth,
+// //           height: constraints.maxHeight,
+// //           color: Colors.teal,
+// //           child: Center(
+// //             child: Text(
+// //               "${size.width} / ${constraints.maxWidth}", // 같음
+// //               style: TextStyle(color: Colors.white, fontSize: 98),
+// //             ),
+// //           ),
+// //         ),
+// //       ),
+// //     );
+// //   }
+// // }
+
+// class LayoutBuilderCodeLab extends StatelessWidget {
+//   const LayoutBuilderCodeLab({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final size = MediaQuery.of(context).size;
+
+//     return Scaffold(
+//       body: SizedBox(
+//         width: size.width / 2, // 화면의 너비의 반만큼 차지
+//         child: LayoutBuilder(
+//           builder: (context, constraints) => Container(
+//             // width: size.width,
+//             // height: size.height,
+//             width: constraints.maxWidth,
+//             height: constraints.maxHeight,
+//             color: Colors.teal,
+//             child: Center(
+//               child: Text(
+//                 "${size.width} / ${constraints.maxWidth}",
+//                 style: TextStyle(color: Colors.white, fontSize: 98),
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
