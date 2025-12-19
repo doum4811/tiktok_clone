@@ -30,8 +30,8 @@ class TikTokApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: false,
         brightness: Brightness.light,
-
-        textTheme: GoogleFonts.itimTextTheme(),
+        // textTheme: Typography.blackCupertino,
+        textTheme: Typography.blackMountainView,
 
         scaffoldBackgroundColor: Colors.white,
         bottomAppBarTheme: BottomAppBarThemeData(color: Colors.grey.shade50),
@@ -57,11 +57,10 @@ class TikTokApp extends StatelessWidget {
         useMaterial3: false,
         brightness: Brightness.dark,
 
-        textTheme: GoogleFonts.itimTextTheme(
-          ThemeData(brightness: Brightness.dark).textTheme,
-        ),
+        textTheme: Typography.whiteMountainView,
 
         scaffoldBackgroundColor: Colors.black,
+        appBarTheme: AppBarTheme(backgroundColor: Colors.grey.shade900),
         bottomAppBarTheme: BottomAppBarThemeData(color: Colors.grey.shade800),
 
         primaryColor: Color(0xFFE9435A),
