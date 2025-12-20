@@ -62,6 +62,7 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
+        // 여기도 SingUpScreen처럼 고쳐야하지만 크게 다르지 않아 변경하지않음
         color: isDarkMode(context) ? null : Colors.grey.shade100,
         elevation: 2, // 잘 먹는 느낌이 안듦 확인 필요
         child: Padding(

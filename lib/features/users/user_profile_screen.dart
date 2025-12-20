@@ -43,7 +43,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      Gaps.v20,
+                      Gaps.v16, // Gaps.v20,
                       CircleAvatar(
                         radius: 50,
                         foregroundColor: Colors.blue,
@@ -52,7 +52,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         ),
                         child: Text("니꼬"),
                       ),
-                      Gaps.v20,
+                      Gaps.v16, // Gaps.v20
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -73,7 +73,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       ),
                       Gaps.v24,
                       SizedBox(
-                        height: Sizes.size48,
+                        height: Sizes.size48 + Sizes.size1, // Sizes.size48,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -111,7 +111,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                 ),
                                 Gaps.v3,
                                 Text(
-                                  "Following",
+                                  "Followers",
                                   style: TextStyle(color: Colors.grey.shade500),
                                 ),
                               ],

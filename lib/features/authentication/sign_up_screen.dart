@@ -97,14 +97,13 @@ class SignUpScreen extends StatelessWidget {
               ),
             ),
           ),
-          bottomNavigationBar: BottomAppBar(
-            // color: Colors.grey.shade50,
+          bottomNavigationBar: Container(
             color: isDarkMode(context) ? null : Colors.grey.shade50,
-            elevation: 2, // 잘 먹는 느낌이 안듦 확인 필요
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: Sizes.size10,
-              ), //size32 글씨잘림
+              padding: const EdgeInsets.only(
+                top: Sizes.size32,
+                bottom: Sizes.size64,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

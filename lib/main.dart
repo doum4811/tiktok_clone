@@ -28,7 +28,9 @@ class TikTokApp extends StatelessWidget {
       title: 'TikTok Clone',
       themeMode: ThemeMode.system, //  light,
       theme: ThemeData(
-        useMaterial3: false,
+        // useMaterial3: false,
+        useMaterial3: true,
+
         brightness: Brightness.light,
         // textTheme: Typography.blackCupertino,
         textTheme: Typography.blackMountainView,
@@ -44,6 +46,7 @@ class TikTokApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
           elevation: 0,
           titleTextStyle: TextStyle(
             color: Colors.black,
@@ -55,10 +58,18 @@ class TikTokApp extends StatelessWidget {
           //TabBarTheme
           labelColor: Colors.black,
           unselectedLabelColor: Colors.grey.shade500,
+          indicatorColor: Colors.black,
         ),
       ),
       darkTheme: ThemeData(
-        useMaterial3: false,
+        // useMaterial3: false,
+        useMaterial3: true,
+        tabBarTheme: TabBarThemeData(
+          //TabBarTheme
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey.shade700,
+          indicatorColor: Colors.white,
+        ),
         brightness: Brightness.dark,
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Color(0xFFE9435A),
@@ -66,14 +77,25 @@ class TikTokApp extends StatelessWidget {
         textTheme: Typography.whiteMountainView,
 
         scaffoldBackgroundColor: Colors.black,
-        appBarTheme: AppBarTheme(backgroundColor: Colors.grey.shade900),
-        bottomAppBarTheme: BottomAppBarThemeData(color: Colors.grey.shade800),
+        appBarTheme: AppBarTheme(
+          surfaceTintColor: Colors.grey.shade900,
+          backgroundColor: Colors.grey.shade900,
+          foregroundColor: Colors.white,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: Sizes.size16 + Sizes.size2,
+            fontWeight: FontWeight.w600,
+          ),
+          actionsIconTheme: IconThemeData(color: Colors.grey.shade100),
+          iconTheme: IconThemeData(color: Colors.grey.shade100),
+        ),
+        bottomAppBarTheme: BottomAppBarThemeData(color: Colors.grey.shade900),
 
         primaryColor: Color(0xFFE9435A),
       ),
-      // home: SignUpScreen(),
+      home: SignUpScreen(),
       // home: ActivityScreen(),
-      home: MainNavigationScreen(),
+      // home: MainNavigationScreen(),
     );
   }
 }
