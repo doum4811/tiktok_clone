@@ -52,20 +52,14 @@ class TikTokApp extends StatelessWidget {
           ),
         ),
         tabBarTheme: TabBarThemeData(
-          // 강의는 TabBarTheme
+          //TabBarTheme
           labelColor: Colors.black,
           unselectedLabelColor: Colors.grey.shade500,
-          indicatorColor: Colors.black,
         ),
-        listTileTheme: ListTileThemeData(iconColor: Colors.black),
       ),
       darkTheme: ThemeData(
         useMaterial3: false,
         brightness: Brightness.dark,
-        tabBarTheme: TabBarThemeData(
-          // 강의는 TabBarTheme
-          labelColor: Colors.white,
-        ),
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Color(0xFFE9435A),
         ),
@@ -73,7 +67,7 @@ class TikTokApp extends StatelessWidget {
 
         scaffoldBackgroundColor: Colors.black,
         appBarTheme: AppBarTheme(backgroundColor: Colors.grey.shade900),
-        bottomAppBarTheme: BottomAppBarThemeData(color: Colors.grey.shade900),
+        bottomAppBarTheme: BottomAppBarThemeData(color: Colors.grey.shade800),
 
         primaryColor: Color(0xFFE9435A),
       ),
