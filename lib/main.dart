@@ -38,7 +38,6 @@ class TikTokApp extends StatelessWidget {
         primaryColor: Color(0xFFE9435A),
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Color(0xFFE9435A),
-          // selectionColor: Color(0xFFE9435A),
         ),
         splashColor: Colors.transparent,
         // highlightColor: Colors.transparent,
@@ -52,11 +51,23 @@ class TikTokApp extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
+        tabBarTheme: TabBarThemeData(
+          // 강의는 TabBarTheme
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey.shade500,
+          indicatorColor: Colors.black,
+        ),
       ),
       darkTheme: ThemeData(
         useMaterial3: false,
         brightness: Brightness.dark,
-
+        tabBarTheme: TabBarThemeData(
+          // 강의는 TabBarTheme
+          labelColor: Colors.white,
+        ),
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Color(0xFFE9435A),
+        ),
         textTheme: Typography.whiteMountainView,
 
         scaffoldBackgroundColor: Colors.black,
@@ -65,9 +76,9 @@ class TikTokApp extends StatelessWidget {
 
         primaryColor: Color(0xFFE9435A),
       ),
-      home: SignUpScreen(),
+      // home: SignUpScreen(),
       // home: ActivityScreen(),
-      // home: MainNavigationScreen(),
+      home: MainNavigationScreen(),
     );
   }
 }
