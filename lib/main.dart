@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
 import 'package:tiktok_clone/features/inbox/activity_screen.dart';
 import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
+import 'package:tiktok_clone/features/settings/settings_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +28,12 @@ class TikTokApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'TikTok Clone',
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [Locale("en"), Locale("ko"), Locale("es")],
       themeMode: ThemeMode.system, //  light,
       theme: ThemeData(
         // useMaterial3: false,
@@ -87,15 +95,15 @@ class TikTokApp extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
           actionsIconTheme: IconThemeData(color: Colors.grey.shade100),
-          iconTheme: IconThemeData(color: Colors.grey.shade100),
         ),
         bottomAppBarTheme: BottomAppBarThemeData(color: Colors.grey.shade900),
 
         primaryColor: Color(0xFFE9435A),
       ),
-      home: SignUpScreen(),
+      // home: SignUpScreen(),
       // home: ActivityScreen(),
       // home: MainNavigationScreen(),
+      home: SettingsScreen(),
     );
   }
 }
