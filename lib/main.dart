@@ -29,13 +29,8 @@ class TikTokApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'TikTok Clone',
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [Locale("en"), Locale("ko"), Locale("es")],
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       themeMode: ThemeMode.system, //  light,
       theme: ThemeData(
         // useMaterial3: false,
@@ -102,10 +97,10 @@ class TikTokApp extends StatelessWidget {
 
         primaryColor: Color(0xFFE9435A),
       ),
-      // home: SignUpScreen(),
+      home: SignUpScreen(),
       // home: ActivityScreen(),
       // home: MainNavigationScreen(),
-      home: SettingsScreen(),
+      // home: SettingsScreen(),
     );
   }
 }
