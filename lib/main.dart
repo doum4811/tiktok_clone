@@ -26,7 +26,7 @@ class TikTokApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    S.load(const Locale('en'));
+    // S.load(const Locale('en'));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'TikTok Clone',
@@ -103,9 +103,9 @@ class TikTokApp extends StatelessWidget {
 
         primaryColor: Color(0xFFE9435A),
       ),
-      // home: SignUpScreen(),
+      home: SignUpScreen(),
       // home: ActivityScreen(),
-      home: MainNavigationScreen(),
+      // home: MainNavigationScreen(),
       // home: SettingsScreen(),
     );
   }
