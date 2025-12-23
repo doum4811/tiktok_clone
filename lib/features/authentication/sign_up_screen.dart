@@ -45,6 +45,7 @@ class SignUpScreen extends StatelessWidget {
         },
       ),
     ); */
+    //context.push("/users/lynn?show=likes");
     context.push(UsernameScreen.routeName);
   }
 
