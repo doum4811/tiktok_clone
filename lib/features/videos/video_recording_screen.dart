@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/generated/l10n.dart';
 
 class VideoRecordingScreen extends StatefulWidget {
   const VideoRecordingScreen({super.key});
@@ -11,13 +12,29 @@ class VideoRecordingScreen extends StatefulWidget {
   State<VideoRecordingScreen> createState() => _VideoRecordingScreenState();
 }
 
-class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
+class _VideoRecordingScreenState extends State<VideoRecordingScreen>
+    with TickerProviderStateMixin {
   bool _hasPermission = false;
 
   bool _isSelfieMode = false;
 
-  late FlashMode _flashMode;
+  late final AnimationController _buttionAnimationController =
+      AnimationController(vsync: this, duration: Duration(milliseconds: 200));
 
+  late final Animation<double> _buttonAnimation = Tween(
+    begin: 1.0,
+    end: 1.3,
+  ).animate(_buttionAnimationController);
+
+  late final AnimationController _progressAnimationController =
+      AnimationController(
+        vsync: this,
+        duration: Duration(seconds: 10),
+        lowerBound: 0.0,
+        upperBound: 1.0,
+      );
+
+  late FlashMode _flashMode;
   late CameraController _cameraController;
   Future<void> initCamera() async {
     final cameras = await availableCameras();
@@ -56,6 +73,14 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
   void initState() {
     super.initState();
     initPermissions();
+    _progressAnimationController.addListener(() {
+      setState(() {});
+    });
+    _progressAnimationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _stopRecording();
+      }
+    });
   }
 
   Future<void> toggleSelfieMode() async {
@@ -68,6 +93,18 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
     await _cameraController.setFlashMode(newFlashMode);
     _flashMode = newFlashMode;
     setState(() {});
+  }
+
+  void _startRecording(TapDownDetails _) {
+    // print("START RECORDINGGGGGG");
+    _buttionAnimationController.forward();
+    _progressAnimationController.forward();
+  }
+
+  void _stopRecording() {
+    // print("STOP RECORDINGGGGGG");
+    _buttionAnimationController.reverse();
+    _progressAnimationController.reset();
   }
 
   @override
@@ -95,6 +132,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
               )
             // : Stack(children: [CameraPreview(_cameraController)]),
             : Stack(
+                alignment: Alignment.center,
                 children: [
                   CameraPreview(_cameraController),
                   Positioned(
@@ -141,6 +179,38 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
                           icon: Icon(Icons.flashlight_on_rounded),
                         ),
                       ],
+                    ),
+                  ),
+                  Positioned(
+                    bottom: Sizes.size40,
+                    child: GestureDetector(
+                      onTapDown: _startRecording,
+                      onTapUp: (details) => _stopRecording(),
+                      child: ScaleTransition(
+                        scale: _buttonAnimation,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            SizedBox(
+                              width: Sizes.size80 + Sizes.size14,
+                              height: Sizes.size80 + Sizes.size14,
+                              child: CircularProgressIndicator(
+                                color: Colors.red.shade400,
+                                strokeWidth: Sizes.size6,
+                                value: _progressAnimationController.value,
+                              ),
+                            ),
+                            Container(
+                              width: Sizes.size80,
+                              height: Sizes.size80,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.red.shade400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ],
