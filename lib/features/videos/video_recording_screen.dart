@@ -150,28 +150,15 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
   void dispose() {
     _progressAnimationController.dispose();
     _buttionAnimationController.dispose();
-    _cameraController.dispose();
+    if (!_noCamera) {
+      _cameraController.dispose();
+    }
     super.dispose();
   }
 
-  // @override
-  // Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
-  //   // print(state);
-  //   if (!_hasPermission) return;
-  //   if (!_cameraController.value.isInitialized) return;
-
-  //   if (state == AppLifecycleState.inactive) {
-  //     _cameraController.dispose();
-  //   } else if (state == AppLifecycleState.resumed) {
-  //     await initCamera();
-  //     setState(() {});
-  //   }
-  // }
-
-  // async 메서드로 만들고 싶지 않다면
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
-    // print(state);
+    if (_noCamera) return;
     if (!_hasPermission) return;
     if (!_cameraController.value.isInitialized) return;
 
@@ -230,6 +217,11 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
                 children: [
                   if (!_noCamera && _cameraController.value.isInitialized)
                     CameraPreview(_cameraController),
+                  Positioned(
+                    top: Sizes.size40,
+                    left: Sizes.size20,
+                    child: CloseButton(color: Colors.white),
+                  ),
                   if (!_noCamera)
                     Positioned(
                       top: Sizes.size20,
