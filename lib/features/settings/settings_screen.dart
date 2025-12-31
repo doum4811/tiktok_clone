@@ -30,13 +30,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
         appBar: AppBar(title: Text('Settings')),
         body: ListView(
           children: [
-            SwitchListTile.adaptive(
-              value: VideoConfigData.of(context).autoMute,
-              onChanged: (value) {
-                VideoConfigData.of(context).toggleMuted();
-              },
-              title: Text("Auto Mute"),
-              subtitle: Text("Videos will be muted by default."),
+            AnimatedBuilder(
+              animation: videoConfig,
+              builder: (context, child) => SwitchListTile.adaptive(
+                value: videoConfig.autoMute,
+                onChanged: (value) {
+                  videoConfig.toggleAutoMute();
+                },
+                title: Text("Mute video"),
+                subtitle: Text("Videos will be muted by default."),
+              ),
             ),
             CheckboxListTile(
               activeColor: Colors.black,
